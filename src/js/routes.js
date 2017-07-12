@@ -39,7 +39,6 @@ export default class Router {
     
     constructor() {
         this.routes = {};
-        this.element = document.getElementById('router-target');
     }
     
     /* route registering function
@@ -60,7 +59,7 @@ export default class Router {
      *
      * @param   [string]   url   [destination]
     */
-    route() {
+    route(el) {
         const hash_frag = location.hash.slice(1) || '/';
         
         // deal with query params
@@ -69,18 +68,19 @@ export default class Router {
               route_split  = route_pieces.length,
               params = (route_split > 1) ? parse_params(route_pieces[1]) : null;
         
-        console.log('hash fragment: ', hash_frag);
-        console.log('route_pieces: ',  route_pieces);
-        console.log('route_split: ',   route_split);
-        console.log('params: ',        params);
+        console.log('======= Router Diagnostics =======');
+        console.log('hash fragment : ', hash_frag);
+        console.log('route_pieces  : ', route_pieces);
+        console.log('route_split   : ', route_split);
+        console.log('params        : ', params);
         
-        console.log('routes from Router.route: ', this.routes);
               
         // capture specific route object from 'routes'
         let route = this.routes[base_route];
         
-        if (this.element && route.controller) {
-            this.element.html(route.controller(params));
+        if (el && route.controller) {
+            route.controller(params);
+            el.innerHTML = hash_frag;
         }
     }
     

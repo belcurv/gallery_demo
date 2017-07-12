@@ -70,6 +70,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var App = function App() {
     _classCallCheck(this, App);
 
+    this.el = document.getElementById('router-target');
+
     var model = new _model2.default();
     var view = new _view2.default();
 
@@ -84,17 +86,23 @@ var setView = function setView() {
     app.controller.setView(document.location.hash);
 };
 
+// event handler calls router's 'route' method
+var doRoute = function doRoute() {
+    app.router.route(app.el);
+};
+
 // define routes
 app.router.add_route('/', 'home', setView);
 app.router.add_route('/about', 'about', setView);
 app.router.add_route('/contact', 'contact', setView);
 app.router.add_route('/portfolio', 'portfolio', setView);
 
-console.log('routes from Main: ', app.router.routes);
+//console.log('routes from Main: ', app.router.routes);
+//console.log('element from Main: ', app.router.element);
 
 // register event listeners
-(0, _util.$on)(window, 'load', app.router.route);
-(0, _util.$on)(window, 'hashchange', app.router.route);
+(0, _util.$on)(window, 'load', doRoute);
+(0, _util.$on)(window, 'hashchange', doRoute);
 
 },{"./controller":1,"./model":3,"./routes":4,"./util":7,"./view":8}],3:[function(require,module,exports){
 'use strict';
@@ -181,7 +189,6 @@ var Router = function () {
         _classCallCheck(this, Router);
 
         this.routes = {};
-        this.element = document.getElementById('router-target');
     }
 
     /* route registering function
@@ -208,7 +215,7 @@ var Router = function () {
 
     }, {
         key: 'route',
-        value: function route() {
+        value: function route(el) {
             var hash_frag = location.hash.slice(1) || '/';
 
             // deal with query params
@@ -217,18 +224,18 @@ var Router = function () {
                 route_split = route_pieces.length,
                 params = route_split > 1 ? parse_params(route_pieces[1]) : null;
 
-            console.log('hash fragment: ', hash_frag);
-            console.log('route_pieces: ', route_pieces);
-            console.log('route_split: ', route_split);
-            console.log('params: ', params);
-
-            console.log('routes from Router.route: ', this.routes);
+            console.log('======= Router Diagnostics =======');
+            console.log('hash fragment : ', hash_frag);
+            console.log('route_pieces  : ', route_pieces);
+            console.log('route_split   : ', route_split);
+            console.log('params        : ', params);
 
             // capture specific route object from 'routes'
             var route = this.routes[base_route];
 
-            if (this.element && route.controller) {
-                this.element.html(route.controller(params));
+            if (el && route.controller) {
+                route.controller(params);
+                el.innerHTML = hash_frag;
             }
         }
     }]);
