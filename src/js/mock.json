@@ -1,7 +1,7 @@
 [
     {
         "title": "Gallery Uno",
-        "link_url": "#/gallery-uno",
+        "link_url": "#/portfolio?gallery=gallery-uno",
         "img_url": "src/images/gallery-uno/gallery-uno.jpg",
         "images": [
             {
@@ -24,7 +24,7 @@
     },
     {
         "title": "Gallery Dos",
-        "link_url": "#/gallery-dos",
+        "link_url": "#/portfolio?gallery=gallery-dos",
         "img_url": "src/images/gallery-dos/gallery-dos.jpg",
         "images": [
             {
@@ -47,7 +47,7 @@
     },
     {
         "title": "Gallery Tres",
-        "link_url": "#/gallery-tres",
+        "link_url": "#/portfolio?gallery=gallery-tres",
         "img_url": "src/images/gallery-tres/gallery-tres.jpg",
         "images": [
             {
@@ -70,7 +70,7 @@
     },
     {
         "title": "Gallery Cuatro",
-        "link_url": "#/gallery-cuatro",
+        "link_url": "#/portfolio?gallery=gallery-cuatro",
         "img_url": "src/images/gallery-cuatro/gallery-cuatro.jpg",
         "images": [
             {
@@ -93,7 +93,7 @@
     },
     {
         "title": "Gallery Cinco",
-        "link_url": "#/gallery-cinco",
+        "link_url": "#/portfolio?gallery=gallery-cinco",
         "img_url": "src/images/gallery-cinco/gallery-cinco.jpg",
         "images": [
             {
@@ -116,7 +116,7 @@
     },
     {
         "title": "Gallery Seis",
-        "link_url": "#/gallery-seis",
+        "link_url": "#/portfolio?gallery=gallery-seis",
         "img_url": "src/images/gallery-seis/gallery-seis.jpg",
         "images": [
             {
@@ -139,7 +139,7 @@
     },
     {
         "title": "Gallery Siete",
-        "link_url": "#/gallery-siete",
+        "link_url": "#/portfolio?gallery=gallery-siete",
         "img_url": "src/images/gallery-siete/gallery-siete.jpg",
         "images": [
             {
@@ -162,7 +162,7 @@
     },
     {
         "title": "Gallery Ocho",
-        "link_url": "#/gallery-ocho",
+        "link_url": "#/portfolio?gallery=gallery-ocho",
         "img_url": "src/images/gallery-ocho/gallery-ocho.jpg",
         "images": [
             {
@@ -185,7 +185,7 @@
     },
     {
         "title": "Gallery Nueve",
-        "link_url": "#/gallery-nueve",
+        "link_url": "#/portfolio?gallery=gallery-nueve",
         "img_url": "src/images/gallery-nueve/gallery-nueve.jpg",
         "images": [
             {

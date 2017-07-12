@@ -13,11 +13,7 @@ export default class Controller {
     
     setView(hash) {
         
-        console.log('setView fired. Hash: ', hash);
-        
-        // router in here?
-        // this.router.route(hash)   // ???
-        //     .then( data => this.render(data) );   // ???
+//        console.log('setView fired. Hash: ', hash);
         
         this.model.getGalleries()
             .then( data => this.render(data) );
