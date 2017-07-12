@@ -9,7 +9,6 @@ export default class View {
     }
     
     render(data) {
-        console.log(data);
         this.target.innerHTML = gallery_list(data);
         
     }

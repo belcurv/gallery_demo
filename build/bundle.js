@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -20,20 +20,16 @@ var Controller = function () {
     }
 
     _createClass(Controller, [{
-        key: 'render',
+        key: "render",
         value: function render(data) {
             this.view.render(data);
         }
     }, {
-        key: 'setView',
+        key: "setView",
         value: function setView(hash) {
             var _this = this;
 
-            console.log('setView fired. Hash: ', hash);
-
-            // router in here?
-            // this.router.route(hash)   // ???
-            //     .then( data => this.render(data) );   // ???
+            //        console.log('setView fired. Hash: ', hash);
 
             this.model.getGalleries().then(function (data) {
                 return _this.render(data);
@@ -63,6 +59,10 @@ var _controller = require('./controller');
 
 var _controller2 = _interopRequireDefault(_controller);
 
+var _routes = require('./routes');
+
+var _routes2 = _interopRequireDefault(_routes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /* jshint esversion:6, browser:true */
@@ -72,21 +72,31 @@ var App = function App() {
 
     var model = new _model2.default();
     var view = new _view2.default();
+
     this.controller = new _controller2.default(model, view);
+    this.router = new _routes2.default();
 };
 
 var app = new App();
 
-// evnet handler calls controller's 'setView' method with URI hash
+// event handler calls controller's 'setView' method with URI hash
 var setView = function setView() {
     app.controller.setView(document.location.hash);
 };
 
-// register event listeners
-(0, _util.$on)(window, 'load', setView);
-(0, _util.$on)(window, 'hashchange', setView);
+// define routes
+app.router.add_route('/', 'home', setView);
+app.router.add_route('/about', 'about', setView);
+app.router.add_route('/contact', 'contact', setView);
+app.router.add_route('/portfolio', 'portfolio', setView);
 
-},{"./controller":1,"./model":3,"./util":6,"./view":7}],3:[function(require,module,exports){
+console.log('routes from Main: ', app.router.routes);
+
+// register event listeners
+(0, _util.$on)(window, 'load', app.router.route);
+(0, _util.$on)(window, 'hashchange', app.router.route);
+
+},{"./controller":1,"./model":3,"./routes":4,"./util":7,"./view":8}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -122,7 +132,113 @@ var Model = function () {
 
 exports.default = Model;
 
-},{"./service":4}],4:[function(require,module,exports){
+},{"./service":5}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/* jshint esversion:6, browser:true, devel:true */
+
+/* ============================ utility methods ============================ */
+
+function parse_params(param_string) {
+    var input_params_arr = param_string.split('&');
+    var params = {};
+    var j = 0;
+
+    input_params_arr.forEach(function (input_param) {
+
+        // convert input param to array of key, value
+        var param = input_param.split('=');
+
+        if (param.length === 2) {
+
+            // if [key, value] then {key: value}
+            params[param[0]] = param[1];
+        } else if (param.length === 1) {
+
+            // else, {j: key}
+            params[j] = param[0];
+            j += 1;
+        } else {
+            console.log('bad param - die!');
+        }
+    });
+
+    return params;
+}
+
+/* =========================== class definition ============================ */
+
+var Router = function () {
+    function Router() {
+        _classCallCheck(this, Router);
+
+        this.routes = {};
+        this.element = document.getElementById('router-target');
+    }
+
+    /* route registering function
+     *
+     * @param   [string]     path          [URL to route to]
+     * @param   [string]     template_id   [template for the route]
+     * @param   [function]   controller    [controller associated with route]
+    */
+
+
+    _createClass(Router, [{
+        key: 'add_route',
+        value: function add_route(path, template_id, controller) {
+            this.routes[path] = {
+                template_id: template_id,
+                controller: controller
+            };
+        }
+
+        /* router
+         *
+         * @param   [string]   url   [destination]
+        */
+
+    }, {
+        key: 'route',
+        value: function route() {
+            var hash_frag = location.hash.slice(1) || '/';
+
+            // deal with query params
+            var route_pieces = hash_frag.split('?'),
+                base_route = route_pieces[0],
+                route_split = route_pieces.length,
+                params = route_split > 1 ? parse_params(route_pieces[1]) : null;
+
+            console.log('hash fragment: ', hash_frag);
+            console.log('route_pieces: ', route_pieces);
+            console.log('route_split: ', route_split);
+            console.log('params: ', params);
+
+            console.log('routes from Router.route: ', this.routes);
+
+            // capture specific route object from 'routes'
+            var route = this.routes[base_route];
+
+            if (this.element && route.controller) {
+                this.element.html(route.controller(params));
+            }
+        }
+    }]);
+
+    return Router;
+}();
+
+exports.default = Router;
+
+},{}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -149,7 +265,7 @@ var getJSON = function getJSON(url) {
 
 exports.getJSON = getJSON;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -204,7 +320,7 @@ var gallery_list = function gallery_list(galleries) {
 
 exports.gallery_list = gallery_list;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -219,7 +335,7 @@ var $on = function $on(target, event, handler) {
 
 exports.$on = $on;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -242,7 +358,6 @@ var View = function () {
     _createClass(View, [{
         key: 'render',
         value: function render(data) {
-            console.log(data);
             this.target.innerHTML = (0, _template.gallery_list)(data);
         }
     }]);
@@ -252,6 +367,6 @@ var View = function () {
 
 exports.default = View;
 
-},{"./template":5}]},{},[2])
+},{"./template":6}]},{},[2])
 
 //# sourceMappingURL=bundle.js.map
