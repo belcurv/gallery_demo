@@ -4,7 +4,7 @@ import Model      from './model';
 import { $on }    from './util';
 import View       from './view';
 import Controller from './controller';
-import Router     from './routes';
+import Router     from './router';
 
 class App {
     

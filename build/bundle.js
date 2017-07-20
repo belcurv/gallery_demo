@@ -59,9 +59,9 @@ var _controller = require('./controller');
 
 var _controller2 = _interopRequireDefault(_controller);
 
-var _routes = require('./routes');
+var _router = require('./router');
 
-var _routes2 = _interopRequireDefault(_routes);
+var _router2 = _interopRequireDefault(_router);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -76,7 +76,7 @@ var App = function App() {
     var view = new _view2.default();
 
     this.controller = new _controller2.default(model, view);
-    this.router = new _routes2.default();
+    this.router = new _router2.default();
 };
 
 var app = new App();
@@ -104,7 +104,7 @@ app.router.add_route('/portfolio', 'portfolio', setView);
 (0, _util.$on)(window, 'load', doRoute);
 (0, _util.$on)(window, 'hashchange', doRoute);
 
-},{"./controller":1,"./model":3,"./routes":4,"./util":7,"./view":8}],3:[function(require,module,exports){
+},{"./controller":1,"./model":3,"./router":4,"./util":7,"./view":8}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
