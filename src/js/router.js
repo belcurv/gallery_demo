@@ -41,17 +41,25 @@ export default class Router {
         this.routes = {};
     }
     
-    /* route registering function
+    /** 
+     * route registering function
      *
-     * @param   [string]     path          [URL to route to]
-     * @param   [string]     template_id   [template for the route]
-     * @param   [function]   controller    [controller associated with route]
+     * @param   [object]   allRoutes
+     *                       .path         [URL to route to]
+     *                       .template     [template function]
+     *                       .controller   [controller function]
     */
-    add_route(path, template_id, controller) {
-        this.routes[path] = {
-            template_id : template_id,
-            controller  : controller
-        };
+    add_routes(all_routes) {
+        
+        for (let route in all_routes) {
+            
+            let r = all_routes[route];
+            
+            this.routes[r.path] = {
+                template   : r.template,
+                controller : r.controller
+            };
+        }
     }
     
     
@@ -74,13 +82,15 @@ export default class Router {
         console.log('route_split   : ', route_split);
         console.log('params        : ', params);
         
-              
         // capture specific route object from 'routes'
         let route = this.routes[base_route];
         
+        // redirect to home on invalid route
+        if (!route) { route = this.routes['/']; }
+        
+        // if there's an element & controller, execute the route
         if (el && route.controller) {
-            route.controller(params);
-            el.innerHTML = hash_frag;
+            route.controller(el, route.template, hash_frag);
         }
     }
     
