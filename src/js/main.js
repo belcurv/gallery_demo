@@ -5,11 +5,12 @@ import { $on }    from './util';
 import View       from './view';
 import Controller from './controller';
 import Router     from './router';
+import { routes } from './routes';
 
 class App {
     
     constructor() {
-        this.el = document.getElementById('router-target');
+        this.el = document.getElementById('target');
         
         const model = new Model();
         const view  = new View();
@@ -23,24 +24,15 @@ class App {
 
 const app = new App();
 
-// event handler calls controller's 'setView' method with URI hash
-const setView = () => {
-    app.controller.setView(document.location.hash);
-};
+app.controller.setView();
+
+// define routes
+app.router.add_routes(routes);
 
 // event handler calls router's 'route' method
 const doRoute = () => {
     app.router.route(app.el);
 };
-
-// define routes
-app.router.add_route('/',          'home',      setView);
-app.router.add_route('/about',     'about',     setView);
-app.router.add_route('/contact',   'contact',   setView);
-app.router.add_route('/portfolio', 'portfolio', setView);
-
-//console.log('routes from Main: ', app.router.routes);
-//console.log('element from Main: ', app.router.element);
 
 // register event listeners
 $on(window, 'load',       doRoute);

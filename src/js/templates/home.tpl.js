@@ -22,23 +22,13 @@ const html = (literalsArr, ...cooked) => {
 };
 
 
-/* generate grid list of galleries
+/* generate gallery link
 */
-const mainTpl = () => html`
-    <div class="app-shell-head">
-        <div class="app-shell-head-logo">
-            <a href="#/"><h1>Photo Gallery Demo</h1></a>
-        </div>
-        <div class="app-shell-head-nav">
-            <ul>
-                <li><a href="#/about">About</a></li>
-                <li><a href="#/contact">Contact</a></li>
-                <li><a href="#/portfolio">Portfolio</a></li>
-            </ul>
-        </div>
-    </div>
+const homeTpl = (data) => html`
+    <h2>Welcome</h2>
+    
+    <h3>This is a Photo Gallery App written in vanilla ES6 JavaScript</h3>
+    <p>If you can read this, the app router sent you to the home page.</p>
 `;
 
-export { mainTpl };
-
-
+export { homeTpl };

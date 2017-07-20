@@ -1,34 +1,41 @@
 /* jshint esversion:6 */
 
-import { homeController }      from './controllers/home.ctrl.js';
-import { aboutController }     from './controllers/about.ctrl.js';
-import { contactController }   from './controllers/contact.ctrl.js';
-import { portfolioController } from './controllers/portfolio.ctrl.js';
+import { homeCtrl }      from './controllers/home.ctrl.js';
+import { homeTpl }       from './templates/home.tpl.js';
+
+import { aboutCtrl }     from './controllers/about.ctrl.js';
+import { aboutTpl }      from './templates/about.tpl.js';
+
+import { contactCtrl }   from './controllers/contact.ctrl.js';
+import { contactTpl }    from './templates/contact.tpl.js';
+
+import { portfolioCtrl } from './controllers/portfolio.ctrl.js';
+import { gallery_list }  from './templates/portfolio.tpl.js';
 
 const routes = {
     
     home : {
-        path: '/',
-        templateId: 'home',
-        controller: homeController
+        path       : '/',
+        template   : homeTpl,
+        controller : homeCtrl
     },
     
     about : {
-        path: '/',
-        templateId: 'about',
-        controller: aboutController
+        path       : '/about',
+        template   : aboutTpl,
+        controller : aboutCtrl
     },
     
     contact : {
-        path: '/',
-        templateId: 'contact',
-        controller: contactController
+        path       : '/contact',
+        template   : contactTpl,
+        controller : contactCtrl
     },
     
     portfolio : {
-        path: '/',
-        templateId: 'portfolio',
-        controller: portfolioController
+        path       : '/portfolio',
+        template   : gallery_list,
+        controller : portfolioCtrl
     }
     
 };

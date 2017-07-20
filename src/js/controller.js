@@ -7,16 +7,13 @@ export default class Controller {
         this.view  = view;
     }
     
-    render(data) {
-        this.view.render(data);
+    render() {
+        this.view.render();
     }
     
-    setView(hash) {
+    setView() {
         
-//        console.log('setView fired. Hash: ', hash);
-        
-        this.model.getGalleries()
-            .then( data => this.render(data) );
+        this.render();
         
     }
     
