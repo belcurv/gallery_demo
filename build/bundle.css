@@ -1,0 +1,358 @@
+/* =============================== BASE GRID =============================== */
+
+.Grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.Grid-cell {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; /* width & height incl padding and border */
+}
+
+
+/* ========================= GRID STYLE MODIFIERS ========================== */
+
+/* Gutters */
+
+.Grid--gutters {
+    margin: -1em 0 1em -1em;
+}
+
+.Grid--gutters > .Grid-cell {
+    padding: 1em 0 0 1em;
+}
+
+.Grid--guttersLg {
+    margin: -1.5em 0 1.5em -1.5em;
+}
+
+.Grid--guttersLg > .Grid-cell {
+    padding: 1.5em 0 0 1.5em;
+}
+
+.Grid--guttersXl {
+    margin: -2em 0 2em -2em;
+}
+
+.Grid--guttersXl > .Grid-cell {
+    padding: 2em 0 0 2em;
+}
+
+
+/* Alignment per row */
+.Grid--top {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    -ms-grid-row-align: flex-start;
+    align-items: flex-start;
+}
+
+.Grid--bottom {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    -ms-grid-row-align: flex-end;
+    align-items: flex-end;
+}
+
+.Grid--center {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+}
+
+.Grid--justifyCenter {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+
+/* alignment per cell */
+.Grid-cell--top {
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+}
+
+.Grid-cell--bottom {
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+}
+
+.Grid-cell--center {
+    -ms-flex-item-align: center;
+    align-self: center;
+}
+
+.Grid-cell--autoSize {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+}
+
+
+/* ======================= GRID RESPONSIVE MODIFIERS ======================= */
+
+/* Base classes for all media */
+.Grid--fit > .Grid-cell {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.Grid--full > .Grid-cell {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 100%;
+    flex: 1 0 100%;
+}
+
+.Grid--1of2 > .Grid-cell {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 50%;
+    flex: 1 0 50%;
+}
+
+.Grid--1of3 > .Grid-cell {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 33.3333%;
+    flex: 1 0 33.3333%;
+}
+
+.Grid--1of4 > .Grid-cell {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 25%;
+    flex: 1 0 25%;
+}
+
+
+/* Small screens */
+@media (max-width: 546px) {
+    .small-Grid--fit > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+    }
+
+    .small-Grid--full > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 100%;
+        flex: 1 0 100%;
+    }
+
+    .small-Grid--1of2 > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 50%;
+        flex: 1 0 50%;
+    }
+
+    .small-Grid--1of3 > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 33.3333%;
+        flex: 1 0 33.3333%;
+    }
+
+    .small-Grid--1of4 > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 25%;
+        flex: 1 0 25%;
+    }
+}
+
+/* Medium screens */
+@media (min-width: 546px) {
+    .med-Grid--fit > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+    }
+
+    .med-Grid--full > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 100%;
+        flex: 1 0 100%;
+    }
+
+    .med-Grid--1of2 > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 50%;
+        flex: 1 0 50%;
+    }
+
+    .med-Grid--1of3 > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 33.3333%;
+        flex: 1 0 33.3333%;
+    }
+
+    .med-Grid--1of4 > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 25%;
+        flex: 1 0 25%;
+    }
+}
+
+/* Large screens */
+@media (min-width: 960px) {
+    .large-Grid--fit > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+    }
+
+    .large-Grid--full > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 100%;
+        flex: 1 0 100%;
+    }
+
+    .large-Grid--1of2 > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 50%;
+        flex: 1 0 50%;
+    }
+
+    .large-Grid--1of3 > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 33.3333%;
+        flex: 1 0 33.3333%;
+    }
+
+    .large-Grid--1of4 > .Grid-cell {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 25%;
+        flex: 1 0 25%;
+    }
+    
+}
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 12px;
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.app-shell-head {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    background: #ccc;
+    -webkit-box-shadow: 0 0 10px 3px #000;
+            box-shadow: 0 0 10px 3px #000;
+}
+
+.app-shell-head-logo {
+    display: inline-block;
+    padding-left: 1em;
+}
+
+.app-shell-head-logo h1 {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    line-height: 60px;
+}
+
+.app-shell-head-nav {
+    position: absolute;
+    margin: 0 .25em 0 0;
+    padding: 0;
+    top: 0;
+    right: 0;
+    height: 100%;
+    line-height: 60px;
+}
+
+.app-shell-head-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.app-shell-head-nav li {
+    display: inline;
+    margin: 0 .75em;
+}
+
+.app-shell-head a {
+    color: #000;
+    text-decoration: none;
+}
+
+.app-shell-head-nav a {
+    font-size: 1.5em;
+}
+
+#target {
+    position: relative;
+    top: 80px;
+
+}
+
+.gallery-list {
+    max-width: 900px;
+    margin: 0 auto;
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+
+.gallery-link {
+    position: relative;
+    height: 268px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.gallery-link > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #efefef;
+    text-decoration: none;
+    color: white;
+}
+
+.gallery-link > a:hover {
+    background: #e9e9e9;
+}
+
+.gallery-link-title {
+    position: absolute;
+    bottom: 1em;
+    width: calc(100% - 2em);
+    text-align: center;
+}
+
+.gallery-link-img {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
