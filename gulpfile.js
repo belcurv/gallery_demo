@@ -4,10 +4,25 @@ const gulp       = require('gulp'),
       browserify = require('browserify'),
       babelify   = require('babelify'),
       buffer     = require('vinyl-buffer'),
+      concat       = require('gulp-concat'),
+      autoprefixer = require('gulp-autoprefixer'),
 //      uglify     = require('gulp-uglify'),
       sourcemaps = require('gulp-sourcemaps'),
       source     = require('vinyl-source-stream');
 
+
+// process stylesheets
+gulp.task('styles', function () {
+    gulp.src('./src/css/**/*.css')
+        .pipe(concat('bundle.css'))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions']  // config object
+        }))
+        .pipe(gulp.dest('./build'));
+});
+
+
+// process javascript
 gulp.task('js', () => {
     return browserify({
             entries: './src/js/main.js',
@@ -26,8 +41,11 @@ gulp.task('js', () => {
         .pipe(gulp.dest('./build'));
 });
 
-gulp.task('default', ['js']);
 
-gulp.task('watch', () => {
-    return gulp.watch('./src/**/*.js', ['default']);
+// default task inits watchers
+gulp.task('default', ['js', 'styles'], () => {
+    
+    gulp.watch('src/css/**/*.css', ['styles']);
+    gulp.watch('src/js/**/*.js',   ['js']);
+    
 });
