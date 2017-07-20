@@ -1,15 +1,17 @@
 /* jshint esversion:6, browser: true */
 
-import { gallery_list } from './template';
+import { mainTpl } from './template';
 
 export default class View {
     
     constructor() {
-        this.target = document.getElementById('target');
+        this.target = document.getElementById('header');
     }
     
-    render(data) {
-        this.target.innerHTML = gallery_list(data);
+    render() {
+        console.log('Main View render() method fired!');
+        console.log(this.target);
+        this.target.innerHTML = mainTpl();
         
     }
     

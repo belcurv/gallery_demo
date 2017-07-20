@@ -41,8 +41,7 @@ export default class Router {
         this.routes = {};
     }
     
-    /** 
-     * route registering function
+    /* route registering function
      *
      * @param   [object]   allRoutes
      *                       .path         [URL to route to]

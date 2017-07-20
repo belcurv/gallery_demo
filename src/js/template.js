@@ -22,26 +22,23 @@ const html = (literalsArr, ...cooked) => {
 };
 
 
-/* generate gallery link
-*/
-const gallery_link = (gallery) => html`
-    <div class="gallery-link">
-        <a href="${gallery.link_url}">
-            <div class="gallery-link-img" style="background-image: url(${gallery.img_url})"></div>
-            <div class="gallery-link-title">
-                ${gallery.title}
-            </div>
-        </a>
-    </div>
-`;
-
-
 /* generate grid list of galleries
 */
-const gallery_list = (galleries) => html`
-    <div class="gallery-list">
-        ${galleries.map( gallery => gallery_link(gallery) )}
+const mainTpl = () => html`
+    <div class="app-shell-head">
+        <div class="app-shell-head-logo">
+            <a href="#/"><h1>Photo Gallery Demo</h1></a>
+        </div>
+        <div class="app-shell-head-nav">
+            <ul>
+                <li><a href="#/about">About</a></li>
+                <li><a href="#/contact">Contact</a></li>
+                <li><a href="#/portfolio">Portfolio</a></li>
+            </ul>
+        </div>
     </div>
 `;
 
-export { gallery_list };
+export { mainTpl };
+
+

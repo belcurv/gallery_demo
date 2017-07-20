@@ -1,9 +1,9 @@
 /* jshint esversion:6, browser:true */
 
-//import Model      from './model';
+import Model      from './model';
 import { $on }    from './util';
-//import View       from './view';
-//import Controller from './controller';
+import View       from './view';
+import Controller from './controller';
 import Router     from './router';
 import { routes } from './routes';
 
@@ -12,10 +12,10 @@ class App {
     constructor() {
         this.el = document.getElementById('target');
         
-//        const model = new Model();
-//        const view  = new View();
+        const model = new Model();
+        const view  = new View();
         
-//        this.controller = new Controller(model, view);
+        this.controller = new Controller(model, view);
         this.router     = new Router();
         
     }
@@ -24,10 +24,7 @@ class App {
 
 const app = new App();
 
-// event handler calls controller's 'setView' method with URI hash
-//const setView = () => {
-//    app.controller.setView(document.location.hash);
-//};
+app.controller.setView();
 
 // define routes
 app.router.add_routes(routes);
