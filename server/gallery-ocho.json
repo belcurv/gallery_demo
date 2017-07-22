@@ -1,0 +1,26 @@
+{
+    "title": "Gallery Ocho",
+    "description": "The eigth in a series of faked photo galleries.",
+    "images": [
+        {
+            "thumb": "src/images/gallery-ocho/image_001_thumb.jpg",
+            "large": "src/images/gallery-ocho/image_001.jpg",
+            "alt"  : "src/images/gallery-ocho/image_001.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-ocho/image_001_thumb.jpg",
+            "large": "src/images/gallery-ocho/image_001.jpg",
+            "alt"  : "src/images/gallery-ocho/image_002.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-ocho/image_001_thumb.jpg",
+            "large": "src/images/gallery-ocho/image_001.jpg",
+            "alt"  : "src/images/gallery-ocho/image_003.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-ocho/image_001_thumb.jpg",
+            "large": "src/images/gallery-ocho/image_001.jpg",
+            "alt"  : "src/images/gallery-ocho/image_004.jpg"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "title": "Gallery Dos",
+    "description": "The second in a series of faked photo galleries.",
+    "images": [
+        {
+            "thumb": "src/images/gallery-dos/image_001_thumb.jpg",
+            "large": "src/images/gallery-dos/image_001.jpg",
+            "alt"  : "src/images/gallery-dos/image_001.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-dos/image_001_thumb.jpg",
+            "large": "src/images/gallery-dos/image_001.jpg",
+            "alt"  : "src/images/gallery-dos/image_002.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-dos/image_001_thumb.jpg",
+            "large": "src/images/gallery-dos/image_001.jpg",
+            "alt"  : "src/images/gallery-dos/image_003.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-dos/image_001_thumb.jpg",
+            "large": "src/images/gallery-dos/image_001.jpg",
+            "alt"  : "src/images/gallery-dos/image_004.jpg"
+        }
+    ]
+}

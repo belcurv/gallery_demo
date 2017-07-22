@@ -1,0 +1,26 @@
+{
+    "title": "Gallery Cinco",
+    "description": "The fifth in a series of faked photo galleries.",
+    "images": [
+        {
+            "thumb": "src/images/gallery-cinco/image_001_thumb.jpg",
+            "large": "src/images/gallery-cinco/image_001.jpg",
+            "alt"  : "src/images/gallery-cinco/image_001.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-cinco/image_001_thumb.jpg",
+            "large": "src/images/gallery-cinco/image_001.jpg",
+            "alt"  : "src/images/gallery-cinco/image_002.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-cinco/image_001_thumb.jpg",
+            "large": "src/images/gallery-cinco/image_001.jpg",
+            "alt"  : "src/images/gallery-cinco/image_003.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-cinco/image_001_thumb.jpg",
+            "large": "src/images/gallery-cinco/image_001.jpg",
+            "alt"  : "src/images/gallery-cinco/image_004.jpg"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "title": "Gallery Uno",
+    "description": "The first in a series of faked photo galleries.",
+    "images": [
+        {
+            "thumb": "src/images/gallery-uno/image_001_thumb.jpg",
+            "large": "src/images/gallery-uno/image_001.jpg",
+            "alt"  : "src/images/gallery-uno/image_001.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-uno/image_001_thumb.jpg",
+            "large": "src/images/gallery-uno/image_001.jpg",
+            "alt"  : "src/images/gallery-uno/image_002.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-uno/image_001_thumb.jpg",
+            "large": "src/images/gallery-uno/image_001.jpg",
+            "alt"  : "src/images/gallery-uno/image_003.jpg"
+        },
+        {
+            "thumb": "src/images/gallery-uno/image_001_thumb.jpg",
+            "large": "src/images/gallery-uno/image_001.jpg",
+            "alt"  : "src/images/gallery-uno/image_004.jpg"
+        }
+    ]
+}
