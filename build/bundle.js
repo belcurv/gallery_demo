@@ -1,43 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/* jshint esversion:6, devel: true */
-
-var Controller = function () {
-    function Controller(model, view) {
-        _classCallCheck(this, Controller);
-
-        this.model = model;
-        this.view = view;
-    }
-
-    _createClass(Controller, [{
-        key: "render",
-        value: function render() {
-            this.view.render();
-        }
-    }, {
-        key: "setView",
-        value: function setView() {
-
-            this.render();
-        }
-    }]);
-
-    return Controller;
-}();
-
-exports.default = Controller;
-
-},{}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56,7 +17,7 @@ function aboutCtrl(el, template, data) {
 
 exports.aboutCtrl = aboutCtrl;
 
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -75,7 +36,32 @@ function contactCtrl(el, template, data) {
 
 exports.contactCtrl = contactCtrl;
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.galleryCtrl = undefined;
+
+var _service = require('../service');
+
+function galleryCtrl(el, template, data) {
+
+    console.log('Gallery Controller fired.');
+    console.log('Data passed to controller: ' + data);
+
+    // need to capture specific gallery from 'data' hash fragment
+    // like:
+    //   getJSON(`src/js/${gallery}.json`)
+    (0, _service.getJSON)('/server/gallery-' + data + '.json').then(function (gallery) {
+        el.innerHTML = template(gallery);
+    });
+} /* jshint esversion:6, devel:true, browser:true */
+
+exports.galleryCtrl = galleryCtrl;
+
+},{"../service":9}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -107,30 +93,19 @@ var _service = require('../service');
 function portfolioCtrl(el, template, data) {
 
     console.log('Portfolio Controller fired.');
+    console.log('Data passed to controller: ' + data);
 
-    (0, _service.getJSON)('src/js/mock.json').then(function (galeries) {
+    (0, _service.getJSON)('/server/mock.json').then(function (galeries) {
         el.innerHTML = template(galeries);
     });
 } /* jshint esversion:6, devel: true */
 
 exports.portfolioCtrl = portfolioCtrl;
 
-},{"../service":10}],6:[function(require,module,exports){
+},{"../service":9}],6:[function(require,module,exports){
 'use strict';
 
-var _model = require('./model');
-
-var _model2 = _interopRequireDefault(_model);
-
 var _util = require('./util');
-
-var _view = require('./view');
-
-var _view2 = _interopRequireDefault(_view);
-
-var _controller = require('./controller');
-
-var _controller2 = _interopRequireDefault(_controller);
 
 var _router = require('./router');
 
@@ -146,22 +121,15 @@ var App = function App() {
     _classCallCheck(this, App);
 
     this.el = document.getElementById('target');
-
-    var model = new _model2.default();
-    var view = new _view2.default();
-
-    this.controller = new _controller2.default(model, view);
     this.router = new _router2.default();
 };
 
 var app = new App();
 
-app.controller.setView();
-
-// define routes
+// register routes using imported `routes` object
 app.router.add_routes(_routes.routes);
 
-// event handler calls router's 'route' method
+// event handler; calls router's 'route' method
 var doRoute = function doRoute() {
     app.router.route(app.el);
 };
@@ -170,43 +138,7 @@ var doRoute = function doRoute() {
 (0, _util.$on)(window, 'load', doRoute);
 (0, _util.$on)(window, 'hashchange', doRoute);
 
-},{"./controller":1,"./model":7,"./router":8,"./routes":9,"./util":16,"./view":17}],7:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* jshint esversion:6, devel:true */
-
-var _service = require('./service');
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Model = function () {
-    function Model() {
-        _classCallCheck(this, Model);
-    }
-
-    /* fetch galleries
-    */
-
-
-    _createClass(Model, [{
-        key: 'getGalleries',
-        value: function getGalleries() {
-            return (0, _service.getJSON)('src/js/mock.json').then(function (galleries) {
-                return galleries;
-            });
-        }
-    }]);
-
-    return Model;
-}();
-
-exports.default = Model;
-
-},{"./service":10}],8:[function(require,module,exports){
+},{"./router":7,"./routes":8,"./util":15}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -259,10 +191,10 @@ var Router = function () {
 
     /* route registering function
      *
-     * @param   [object]   allRoutes
-     *                       .path         [URL to route to]
-     *                       .template     [template function]
-     *                       .controller   [controller function]
+     * @param   [object]    allRoutes
+     * @param   [string]      .path         [URL to route to]
+     * @param   [function]    .template     [template function]
+     * @param   [function]    .controller   [controller function]
     */
 
 
@@ -283,7 +215,7 @@ var Router = function () {
 
         /* router
          *
-         * @param   [string]   url   [destination]
+         * @param   [string]   el   [target DOM element for route content]
         */
 
     }, {
@@ -291,17 +223,14 @@ var Router = function () {
         value: function route(el) {
             var hash_frag = location.hash.slice(1) || '/';
 
-            // deal with query params
-            var route_pieces = hash_frag.split('?'),
-                base_route = route_pieces[0],
-                route_split = route_pieces.length,
-                params = route_split > 1 ? parse_params(route_pieces[1]) : null;
-
-            console.log('======= Router Diagnostics =======');
-            console.log('hash fragment : ', hash_frag);
-            console.log('route_pieces  : ', route_pieces);
-            console.log('route_split   : ', route_split);
-            console.log('params        : ', params);
+            var delimiter = '/',
+                route_pieces = hash_frag.split(delimiter),
+                formatted_pcs = route_pieces.map(function (p) {
+                return '/' + p;
+            }),
+                piece_count = route_pieces.length,
+                sub_route = route_pieces[3] || '',
+                base_route = piece_count > 3 ? formatted_pcs[1] + formatted_pcs[2] : formatted_pcs[1];
 
             // capture specific route object from 'routes'
             var route = this.routes[base_route];
@@ -311,9 +240,14 @@ var Router = function () {
                 route = this.routes['/'];
             }
 
+            console.log('======= Router Diagnostics =======');
+            console.log('hash_frag    : ', hash_frag);
+            console.log('route_pieces : ', route_pieces);
+            console.log('base_route   : ', base_route);
+
             // if there's an element & controller, execute the route
             if (el && route.controller) {
-                route.controller(el, route.template, hash_frag);
+                route.controller(el, route.template, sub_route);
             }
         }
     }]);
@@ -323,7 +257,7 @@ var Router = function () {
 
 exports.default = Router;
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -346,6 +280,10 @@ var _contactTpl = require('./templates/contact.tpl.js');
 var _portfolioCtrl = require('./controllers/portfolio.ctrl.js');
 
 var _portfolioTpl = require('./templates/portfolio.tpl.js');
+
+var _galleryCtrl = require('./controllers/gallery.ctrl.js');
+
+var _galleryTpl = require('./templates/gallery.tpl.js');
 
 /* jshint esversion:6 */
 
@@ -371,15 +309,21 @@ var routes = {
 
     portfolio: {
         path: '/portfolio',
-        template: _portfolioTpl.gallery_list,
+        template: _portfolioTpl.portfolioTpl,
         controller: _portfolioCtrl.portfolioCtrl
+    },
+
+    gallery: {
+        path: '/portfolio/gallery',
+        template: _galleryTpl.galleryTpl,
+        controller: _galleryCtrl.galleryCtrl
     }
 
 };
 
 exports.routes = routes;
 
-},{"./controllers/about.ctrl.js":2,"./controllers/contact.ctrl.js":3,"./controllers/home.ctrl.js":4,"./controllers/portfolio.ctrl.js":5,"./templates/about.tpl.js":12,"./templates/contact.tpl.js":13,"./templates/home.tpl.js":14,"./templates/portfolio.tpl.js":15}],10:[function(require,module,exports){
+},{"./controllers/about.ctrl.js":1,"./controllers/contact.ctrl.js":2,"./controllers/gallery.ctrl.js":3,"./controllers/home.ctrl.js":4,"./controllers/portfolio.ctrl.js":5,"./templates/about.tpl.js":10,"./templates/contact.tpl.js":11,"./templates/gallery.tpl.js":12,"./templates/home.tpl.js":13,"./templates/portfolio.tpl.js":14}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -406,53 +350,7 @@ var getJSON = function getJSON(url) {
 
 exports.getJSON = getJSON;
 
-},{}],11:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['\n    <div class="app-shell-head">\n        <div class="app-shell-head-logo">\n            <a href="#/"><h1>Photo Gallery Demo</h1></a>\n        </div>\n        <div class="app-shell-head-nav">\n            <ul>\n                <li><a href="#/about">About</a></li>\n                <li><a href="#/contact">Contact</a></li>\n                <li><a href="#/portfolio">Portfolio</a></li>\n            </ul>\n        </div>\n    </div>\n'], ['\n    <div class="app-shell-head">\n        <div class="app-shell-head-logo">\n            <a href="#/"><h1>Photo Gallery Demo</h1></a>\n        </div>\n        <div class="app-shell-head-nav">\n            <ul>\n                <li><a href="#/about">About</a></li>\n                <li><a href="#/contact">Contact</a></li>\n                <li><a href="#/portfolio">Portfolio</a></li>\n            </ul>\n        </div>\n    </div>\n']);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-/* jshint esversion:6 */
-
-/* utility method for easy templating of repeating html elements
- *
- * @params  [array]  literalsArr   [array of all the literal secti
- * @params  [array]  ...cooked     [rest param: all the proccessed expressions]
- * @returns [string]               [the processed string]
-*/
-var html = function html(literalsArr) {
-    for (var _len = arguments.length, cooked = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        cooked[_key - 1] = arguments[_key];
-    }
-
-    var result = '';
-
-    cooked.forEach(function (cook, indx) {
-        var lit = literalsArr[indx];
-        if (Array.isArray(cook)) {
-            cook = cook.join('');
-        }
-        result += lit;
-        result += cook;
-    });
-    result += literalsArr[literalsArr.length - 1];
-    return result;
-};
-
-/* generate grid list of galleries
-*/
-var mainTpl = function mainTpl() {
-    return html(_templateObject);
-};
-
-exports.mainTpl = mainTpl;
-
-},{}],12:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -498,7 +396,7 @@ var aboutTpl = function aboutTpl(data) {
 
 exports.aboutTpl = aboutTpl;
 
-},{}],13:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -544,7 +442,62 @@ var contactTpl = function contactTpl() {
 
 exports.contactTpl = contactTpl;
 
-},{}],14:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['\n    <div class="gallery-link Grid-cell">\n        <a href="', '">\n            <div class="gallery-link-img" style="background-image: url(', ')"></div>\n            <div class="gallery-link-title">\n                ', '\n            </div>\n        </a>\n    </div>\n'], ['\n    <div class="gallery-link Grid-cell">\n        <a href="', '">\n            <div class="gallery-link-img" style="background-image: url(', ')"></div>\n            <div class="gallery-link-title">\n                ', '\n            </div>\n        </a>\n    </div>\n']),
+    _templateObject2 = _taggedTemplateLiteral(['\n    <h2>', '</h2>\n    <p>', '</p>\n    <div class="Grid Grid--gutters small-Grid--full med-Grid--1of2 large-Grid--1of3 gallery-list">\n        ', '\n    </div>\n'], ['\n    <h2>', '</h2>\n    <p>', '</p>\n    <div class="Grid Grid--gutters small-Grid--full med-Grid--1of2 large-Grid--1of3 gallery-list">\n        ', '\n    </div>\n']);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+/* jshint esversion:6 */
+
+/* utility method for easy templating of repeating html elements
+ *
+ * @params  [array]  literalsArr   [array of all the literal secti
+ * @params  [array]  ...cooked     [rest param: all the proccessed expressions]
+ * @returns [string]               [the processed string]
+*/
+var html = function html(literalsArr) {
+    for (var _len = arguments.length, cooked = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        cooked[_key - 1] = arguments[_key];
+    }
+
+    var result = '';
+
+    cooked.forEach(function (cook, indx) {
+        var lit = literalsArr[indx];
+        if (Array.isArray(cook)) {
+            cook = cook.join('');
+        }
+        result += lit;
+        result += cook;
+    });
+    result += literalsArr[literalsArr.length - 1];
+    return result;
+};
+
+/* generate gallery link
+*/
+var image_link = function image_link(image) {
+    return html(_templateObject, image.large, image.thumb, image.alt);
+};
+
+/* generate grid list of galleries
+*/
+var galleryTpl = function galleryTpl(gallery) {
+    return html(_templateObject2, gallery.title, gallery.description, gallery.images.map(function (image) {
+        return image_link(image);
+    }));
+};
+
+exports.galleryTpl = galleryTpl;
+
+},{}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -590,7 +543,7 @@ var homeTpl = function homeTpl(data) {
 
 exports.homeTpl = homeTpl;
 
-},{}],15:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -637,15 +590,15 @@ var gallery_link = function gallery_link(gallery) {
 
 /* generate grid list of galleries
 */
-var gallery_list = function gallery_list(galleries) {
+var portfolioTpl = function portfolioTpl(galleries) {
     return html(_templateObject2, galleries.map(function (gallery) {
         return gallery_link(gallery);
     }));
 };
 
-exports.gallery_list = gallery_list;
+exports.portfolioTpl = portfolioTpl;
 
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -660,40 +613,6 @@ var $on = function $on(target, event, handler) {
 
 exports.$on = $on;
 
-},{}],17:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* jshint esversion:6, browser: true */
-
-var _template = require('./template');
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var View = function () {
-    function View() {
-        _classCallCheck(this, View);
-
-        this.target = document.getElementById('header');
-    }
-
-    _createClass(View, [{
-        key: 'render',
-        value: function render() {
-            console.log('Main View render() method fired!');
-            console.log(this.target);
-            this.target.innerHTML = (0, _template.mainTpl)();
-        }
-    }]);
-
-    return View;
-}();
-
-exports.default = View;
-
-},{"./template":11}]},{},[6])
+},{}]},{},[6])
 
 //# sourceMappingURL=bundle.js.map
