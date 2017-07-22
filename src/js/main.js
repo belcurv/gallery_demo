@@ -1,9 +1,6 @@
 /* jshint esversion:6, browser:true */
 
-import Model      from './model';
 import { $on }    from './util';
-import View       from './view';
-import Controller from './controller';
 import Router     from './router';
 import { routes } from './routes';
 
@@ -11,25 +8,17 @@ class App {
     
     constructor() {
         this.el = document.getElementById('target');
-        
-        const model = new Model();
-        const view  = new View();
-        
-        this.controller = new Controller(model, view);
-        this.router     = new Router();
-        
+        this.router = new Router();
     }
     
 }
 
 const app = new App();
 
-app.controller.setView();
-
-// define routes
+// register routes using imported `routes` object
 app.router.add_routes(routes);
 
-// event handler calls router's 'route' method
+// event handler; calls router's 'route' method
 const doRoute = () => {
     app.router.route(app.el);
 };

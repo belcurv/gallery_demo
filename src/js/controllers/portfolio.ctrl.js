@@ -5,8 +5,9 @@ import { getJSON } from '../service';
 function portfolioCtrl(el, template, data) {
     
     console.log('Portfolio Controller fired.');
+    console.log(`Data passed to controller: ${data}`);
         
-    getJSON('src/js/mock.json')
+    getJSON('/server/mock.json')
         .then( galeries => {
             el.innerHTML = template(galeries);
     });

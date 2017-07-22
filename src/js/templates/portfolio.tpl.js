@@ -38,10 +38,10 @@ const gallery_link = (gallery) => html`
 
 /* generate grid list of galleries
 */
-const gallery_list = (galleries) => html`
+const portfolioTpl = (galleries) => html`
     <div class="Grid Grid--gutters small-Grid--full med-Grid--1of2 large-Grid--1of3 gallery-list">
         ${galleries.map( gallery => gallery_link(gallery) )}
     </div>
 `;
 
-export { gallery_list };
+export { portfolioTpl };

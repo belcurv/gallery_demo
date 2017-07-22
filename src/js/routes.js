@@ -10,7 +10,10 @@ import { contactCtrl }   from './controllers/contact.ctrl.js';
 import { contactTpl }    from './templates/contact.tpl.js';
 
 import { portfolioCtrl } from './controllers/portfolio.ctrl.js';
-import { gallery_list }  from './templates/portfolio.tpl.js';
+import { portfolioTpl }  from './templates/portfolio.tpl.js';
+
+import { galleryCtrl }   from './controllers/gallery.ctrl.js';
+import { galleryTpl }    from './templates/gallery.tpl.js';
 
 const routes = {
     
@@ -34,8 +37,14 @@ const routes = {
     
     portfolio : {
         path       : '/portfolio',
-        template   : gallery_list,
+        template   : portfolioTpl,
         controller : portfolioCtrl
+    },
+    
+    gallery : {
+        path       : '/portfolio/gallery',
+        template   : galleryTpl,
+        controller : galleryCtrl
     }
     
 };

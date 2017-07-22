@@ -43,10 +43,10 @@ export default class Router {
     
     /* route registering function
      *
-     * @param   [object]   allRoutes
-     *                       .path         [URL to route to]
-     *                       .template     [template function]
-     *                       .controller   [controller function]
+     * @param   [object]    allRoutes
+     * @param   [string]      .path         [URL to route to]
+     * @param   [function]    .template     [template function]
+     * @param   [function]    .controller   [controller function]
     */
     add_routes(all_routes) {
         
@@ -64,32 +64,32 @@ export default class Router {
     
     /* router
      *
-     * @param   [string]   url   [destination]
+     * @param   [string]   el   [target DOM element for route content]
     */
     route(el) {
         const hash_frag = location.hash.slice(1) || '/';
         
-        // deal with query params
-        const route_pieces = hash_frag.split('?'),
-              base_route   = route_pieces[0],
-              route_split  = route_pieces.length,
-              params = (route_split > 1) ? parse_params(route_pieces[1]) : null;
-        
-        console.log('======= Router Diagnostics =======');
-        console.log('hash fragment : ', hash_frag);
-        console.log('route_pieces  : ', route_pieces);
-        console.log('route_split   : ', route_split);
-        console.log('params        : ', params);
-        
+        const delimiter     = '/',
+              route_pieces  = hash_frag.split(delimiter),
+              formatted_pcs = route_pieces.map( p => '/' + p),
+              piece_count   = route_pieces.length,
+              sub_route     = route_pieces[3] || '',
+              base_route    = piece_count > 3 ? formatted_pcs[1] + formatted_pcs[2] : formatted_pcs[1];
+
         // capture specific route object from 'routes'
         let route = this.routes[base_route];
         
         // redirect to home on invalid route
         if (!route) { route = this.routes['/']; }
         
+        console.log('======= Router Diagnostics =======');
+        console.log('hash_frag    : ', hash_frag);
+        console.log('route_pieces : ', route_pieces);
+        console.log('base_route   : ', base_route);
+        
         // if there's an element & controller, execute the route
         if (el && route.controller) {
-            route.controller(el, route.template, hash_frag);
+            route.controller(el, route.template, sub_route);
         }
     }
     
