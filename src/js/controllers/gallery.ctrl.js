@@ -10,7 +10,7 @@ function galleryCtrl(el, template, data) {
     // need to capture specific gallery from 'data' hash fragment
     // like:
     //   getJSON(`src/js/${gallery}.json`)
-    getJSON(`/server/gallery-${data}.json`)
+    getJSON(`server/gallery-${data}.json`)
         .then( gallery => {
             el.innerHTML = template(gallery);
     });

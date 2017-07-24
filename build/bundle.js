@@ -54,7 +54,7 @@ function galleryCtrl(el, template, data) {
     // need to capture specific gallery from 'data' hash fragment
     // like:
     //   getJSON(`src/js/${gallery}.json`)
-    (0, _service.getJSON)('/server/gallery-' + data + '.json').then(function (gallery) {
+    (0, _service.getJSON)('server/gallery-' + data + '.json').then(function (gallery) {
         el.innerHTML = template(gallery);
     });
 } /* jshint esversion:6, devel:true, browser:true */
