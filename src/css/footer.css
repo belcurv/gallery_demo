@@ -1,0 +1,32 @@
+footer {
+    margin-top: 1em;
+    color: rgba(255,255,255,.7);
+    background: rgba(255,255,255,.06);
+    text-align: center;
+    font-size: 13px;
+    z-index: 10;
+}
+
+footer .footer-credit {
+    vertical-align: middle;
+}
+
+footer .github-icon {
+    display: inline-block;
+    fill: rgba(255,255,255,.7);
+    vertical-align: middle;
+}
+
+footer .github-icon:hover {
+    fill: white;
+}
+
+footer a {
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: white;
+}
