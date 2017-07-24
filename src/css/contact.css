@@ -1,0 +1,12 @@
+form label,
+form input,
+form select,
+form textarea {
+    display: block;
+    width: 100%;
+    padding: 0.25em 0;
+}
+
+form label {
+    margin-top: 1em;
+}

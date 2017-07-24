@@ -1,3 +1,15 @@
+form label,
+form input,
+form select,
+form textarea {
+    display: block;
+    width: 100%;
+    padding: 0.25em 0;
+}
+
+form label {
+    margin-top: 1em;
+}
 /* =============================== BASE GRID =============================== */
 
 .Grid {
@@ -234,6 +246,38 @@
     }
     
 }
+footer {
+    margin-top: 1em;
+    color: rgba(255,255,255,.7);
+    background: rgba(255,255,255,.06);
+    text-align: center;
+    font-size: 13px;
+    z-index: 10;
+}
+
+footer .footer-credit {
+    vertical-align: middle;
+}
+
+footer .github-icon {
+    display: inline-block;
+    fill: rgba(255,255,255,.7);
+    vertical-align: middle;
+}
+
+footer .github-icon:hover {
+    fill: white;
+}
+
+footer a {
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: white;
+}
 * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -246,40 +290,66 @@ body {
 }
 
 body {
-    font-size: 12px;
-    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background: #333 url(/src/images/splash.jpg) no-repeat center center fixed;
+    background-size: cover;
+    font-size: 13px;
     width: 100%;
-    padding: 1em;
+    height: 100vh;
     font-family: 'Helvetica', 'Arial', sans-serif;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+    color: white;
 }
 
-.app-shell-head {
+.container {
+    position: -webkit-sticky;
+    position: sticky;
+    padding: 0 1em;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+header {
     position: fixed;
-    top: 0;
-    left: 0;
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
+    color: white;
     height: 60px;
     width: 100%;
-    background: #ccc;
-    -webkit-box-shadow: 0 0 10px 3px #000;
-            box-shadow: 0 0 10px 3px #000;
+    background: rgba(255,255,255,.06);
     z-index: 10;
 }
 
-.app-shell-head-logo {
-    display: inline-block;
-    padding-left: 1em;
+header a {
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
 }
 
-.app-shell-head-logo h1 {
+header a:hover {
+    color: white;
+}
+
+.head-logo {
+    display: inline-block;
+}
+
+.head-logo h1 {
     margin: 0;
     padding: 0;
     height: 100%;
     line-height: 60px;
 }
 
-.app-shell-head-nav {
+.head-nav {
     position: absolute;
     margin: 0 .25em 0 0;
     padding: 0;
@@ -289,30 +359,26 @@ body {
     line-height: 60px;
 }
 
-.app-shell-head-nav ul {
+.head-nav ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
 
-.app-shell-head-nav li {
+.head-nav li {
     display: inline;
     margin: 0 .75em;
 }
 
-.app-shell-head a {
-    color: #000;
-    text-decoration: none;
-}
-
-.app-shell-head-nav a {
+.head-nav a {
     font-size: 1.5em;
 }
 
 #target {
-    position: relative;
-    top: 80px;
-
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin-top: 80px;
 }
 
 .gallery-list {
