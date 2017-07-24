@@ -6,7 +6,7 @@ const gulp       = require('gulp'),
       buffer     = require('vinyl-buffer'),
       concat       = require('gulp-concat'),
       autoprefixer = require('gulp-autoprefixer'),
-//      uglify     = require('gulp-uglify'),
+      uglify     = require('gulp-uglify'),
       sourcemaps = require('gulp-sourcemaps'),
       source     = require('vinyl-source-stream');
 
@@ -36,7 +36,7 @@ gulp.task('js', () => {
         .pipe(source('bundle.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
-//        .pipe(uglify())
+        .pipe(uglify())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./build'));
 });
