@@ -7,7 +7,7 @@ function portfolioCtrl(el, template, data) {
     console.log('Portfolio Controller fired.');
     console.log(`Data passed to controller: ${data}`);
         
-    getJSON('/server/mock.json')
+    getJSON('server/mock.json')
         .then( galeries => {
             el.innerHTML = template(galeries);
     });
