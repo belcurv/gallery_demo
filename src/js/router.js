@@ -82,10 +82,10 @@ export default class Router {
         // redirect to home on invalid route
         if (!route) { route = this.routes['/']; }
         
-        console.log('======= Router Diagnostics =======');
-        console.log('hash_frag    : ', hash_frag);
-        console.log('route_pieces : ', route_pieces);
-        console.log('base_route   : ', base_route);
+//        console.log('======= Router Diagnostics =======');
+//        console.log('hash_frag    : ', hash_frag);
+//        console.log('route_pieces : ', route_pieces);
+//        console.log('base_route   : ', base_route);
         
         // if there's an element & controller, execute the route
         if (el && route.controller) {
