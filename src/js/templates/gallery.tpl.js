@@ -7,12 +7,10 @@ import { html } from '../util';
 */
 const image_link = (image) => html`
     <div class="gallery-link Grid-cell">
-        <a href="${image.large}">
-            <div class="gallery-link-img" style="background-image: url(${image.thumb})"></div>
-            <div class="gallery-link-title">
-                ${image.alt}
-            </div>
-        </a>
+        <div class="gallery-link-img" data-link="${image.large}" style="background-image: url(${image.thumb})"></div>
+        <div class="gallery-link-title">
+            ${image.alt}
+        </div>
     </div>
 `;
 
