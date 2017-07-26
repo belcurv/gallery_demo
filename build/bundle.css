@@ -1,3 +1,24 @@
+#target ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#target li {
+    padding: 1em 0;
+}
+
+#target li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.example {
+    background: black;
+    color: #fafafa;
+    padding: .25em 1em;
+    margin: 1em 0;
+}
 form label,
 form input,
 form select,
@@ -269,6 +290,10 @@ footer .github-icon:hover {
     fill: white;
 }
 
+footer p {
+    margin: .5em 0;
+}
+
 footer a {
     color: rgba(255,255,255,.7);
     text-decoration: none;
@@ -383,16 +408,16 @@ header a:hover {
 }
 
 .gallery-list {
-    max-width: 900px;
-    margin: 0 auto;
     position: -webkit-sticky;
     position: sticky;
+    max-width: 900px;
+    margin: 0 auto;
 }
-
 
 .gallery-link {
     position: relative;
     height: 268px;
+    max-width: 268px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
 }
@@ -423,6 +448,7 @@ header a:hover {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
 
 .photo-modal {
@@ -434,7 +460,7 @@ header a:hover {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0,0,0,.75);
+    background-color: rgba(0,0,0,.85);
     z-index: 999;
 }
 
@@ -442,4 +468,9 @@ header a:hover {
     max-width: 75%;
     max-height: 80%;
     margin: auto;
+    opacity: 0;
+    -webkit-transition: opacity .5s ease;
+    transition: opacity .5s ease;
+    -webkit-box-shadow: 0 0 2em .5em black;
+            box-shadow: 0 0 2em .5em black;
 }
