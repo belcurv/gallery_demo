@@ -6,7 +6,7 @@ import { html } from '../util';
 /* generate gallery link
 */
 const contactTpl = () => html`
-    <h2>Contact</h2>
+    <h2>Fake Contact Form</h2>
     
     <h3>Fill out our contact form below to get in touch with us!</h3>
     <form>
