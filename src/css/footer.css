@@ -21,6 +21,10 @@ footer .github-icon:hover {
     fill: white;
 }
 
+footer p {
+    margin: .5em 0;
+}
+
 footer a {
     color: rgba(255,255,255,.7);
     text-decoration: none;
