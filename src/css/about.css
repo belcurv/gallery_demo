@@ -1,0 +1,21 @@
+#target ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#target li {
+    padding: 1em 0;
+}
+
+#target li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.example {
+    background: black;
+    color: #fafafa;
+    padding: .25em 1em;
+    margin: 1em 0;
+}

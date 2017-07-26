@@ -91,15 +91,15 @@ header a:hover {
 }
 
 .gallery-list {
+    position: sticky;
     max-width: 900px;
     margin: 0 auto;
-    position: sticky;
 }
-
 
 .gallery-link {
     position: relative;
     height: 268px;
+    max-width: 268px;
     box-sizing: border-box;
 }
 
@@ -129,6 +129,7 @@ header a:hover {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
 
 .photo-modal {
@@ -138,7 +139,7 @@ header a:hover {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0,0,0,.75);
+    background-color: rgba(0,0,0,.85);
     z-index: 999;
 }
 
@@ -146,4 +147,7 @@ header a:hover {
     max-width: 75%;
     max-height: 80%;
     margin: auto;
+    opacity: 0;
+    transition: opacity .5s ease;
+    box-shadow: 0 0 2em .5em black;
 }
