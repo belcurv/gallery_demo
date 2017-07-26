@@ -13,9 +13,14 @@
     text-decoration: none;
 }
 
+.definition {
+    text-align: justify;
+}
+
 .example {
     background: black;
     color: #fafafa;
     padding: .25em 1em;
     margin: 1em 0;
+    overflow-x: auto;
 }
